@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Roboto',
+  sans-serif;
+  ;
+}
+.container{
+  border-top: 10px;
+  max-width: 80%;
+  margin: auto;
+}
+.headerflex{
+  display: flex;
+  justify-content: space-between;
+}
+ul{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+/*--------------header--------------*/
+header{
+  padding: 12px 0;
+  background-color: #7F44F8;
+}
+header ul{
+  display: inline-block;
+}
+header ul li{
+  display: inline-block;
+  margin-left: 30px;
+}
+header ul li a{
+  font-weight: 500;
+  transition: 0.5s;
+}
+header ul li a:hover{
+  color:  #7F44F8;
+  font-weight: 500;
+}
+header .active{
+  position: sticky;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 28px 0 rgba(0 0 0 /6%);
+  width: 100%;
+  z-index: 10;
+}
+@media screen and (max-width: 768px){
+  /* ToDo: mobile version */
+}
+/*--------------header--------------*/
+.nav {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+.logo {
+  width: 80px;
+}
+
+a.underline-hover-effect {
+  text-decoration: none;
+  color: inherit;
+}
+
+.underline-hover-effect {
+  display: inline-block;
+  padding-bottom: 0.25rem; /* defines the space between text and underline */
+  position: relative;
+}
+
+.underline-hover-effect::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.25s ease-out;
+}
+.underline-hover-effect:hover::before {
+  width: 100%;
+}
+
+/*--------------Career--------------*/
+.flex{
+  display: flex;
+}
+.home{
+  position: relative;
+}
+.home img {
+  width: 100%;
+  position: relative;
+}
+.home h1{
+  /* font-size: 60px; */
+  margin-top: 40px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 5px;
+  text-shadow: 3px 3px 20px #b590ff,
+    -2px 1px 30px #b590ff;
+}
+.middleText {
+  position: absolute;
+  display: block;
+  top: 50%;
+  color: rgb(255, 255, 255);
+  width: 100%;
+  text-align: center;
+}
+/*--------------Career--------------*/
+
+/*--------------Position--------------*/
+.card-block {
+  margin: 32px 0;
+}
+.card-group {
+  display: flex;
+  justify-content: center;
+  gap: 0 50px;  /*用gap 將 3 個flex box 分開*/
+  margin-top: 30px;
+}
+
+.card-group .card {
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: rgb(0 0 0 / 25%) 0px 3px 11px 0px;
+  width: 100%;
+  padding: 50px 20px;
+  margin-bottom: 30px;
+  border: 0;
+}
+
+.card-image {
+  width: 80px;
+  height: 80px;
+
+  display: block;
+  margin: 0 auto 12px auto;
+}
+
+.card-info .title {
+  margin: 20px 8px;
+
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 20px;
+}
+.card-info .summary {
+  min-height: 150px;
+}
+
+.btn-block {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.btn-block button {
+  width: 100px;
+
+  background-color: #b590ff;
+  border: 0;
+}
+.btnpadding{
+  padding-bottom: 10px;
+}
+
+/*--------------Position--------------*/
+
+/*--------------Job Des--------------*/
+.jobdes{
+  width: 700px;
+  margin: 50px auto;
+  border: 5px solid #eee;
+}
+.des {
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #7F44F8;
+}
+.padding-top{
+  padding-top: 10px;
+}
+/*--------------Job Des--------------*/
+
+/*--------------Footer--------------*/
+footer{
+  background-color: #7F44F8;
+  padding: 20px 0 20px 0;
+  color: #fff;
+}
+
+footer ul {
+  padding: 0;
+}
+
+.footer-block {
+  display: flex;
+  justify-content: center;
+
+  gap: 32px;
+}
+
+.footer-list-icon {
+  margin-right: 12px;
+}
+/* .icon{
+  margin-left: 20px;
+  padding: 20px ;
+  border: 1px solid #fff;
+}
+.box{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.box h2{
+  text-align: center;
+  padding-bottom: 10px;
+} */
+/*--------------Footer--------------*/
+
+/*--------------Login--------------*/
+
+
+.container h1 {
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.pClass {
+  margin-bottom: 2%;
+}
+
+.inputClass {
+  border: 1px solid #b590ff;
+  background-color: rgba(252, 252, 252, 0.2);
+  width: 250px;
+  border-radius: 3px;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+}
+
+.buttonClass {
+  outline: 0;
+  background-color: #7F44F8;
+  border-style: solid #7F44F8;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 3px;
+  width: 250px;
+  font-size: 18px;
+  border: solid #7F44F8;
+
+}
+.buttonClass:hover{
+  outline: 0;
+  background-color: #fff;
+  border-style: solid #7F44F8;
+  padding: 10px 15px;
+  color: #7F44F8;
+  border-radius: 3px;
+  width: 250px;
+  font-size: 18px;
+  transition-duration: 0.4s;
+
+}
+/*--------------Login--------------*/
