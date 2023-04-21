@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-export const JobApplicationStatus = (props) => {
-    const [status, setStatus] = useState(props.status);
-    const [statusHistory, setStatusHistory] = useState([props.status]);
+export const JobApplicationStatus = () => {
+    const [status, setStatus] = useState();
+    const [statusHistory, setStatusHistory] = useState();
   
     const handleChange = (event) => {
       const newStatus = event.target.value;

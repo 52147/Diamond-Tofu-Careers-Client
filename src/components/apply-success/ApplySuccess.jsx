@@ -1,18 +1,5 @@
 import React, { useState } from "react";
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  getDocs,
-  doc,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
-import { useAuth } from "../../database/AuthContext";
 import { Button, Modal } from "react-bootstrap";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../database/firebase";
 import { signInWithGooglePopup } from "../../database/firebase";
 import axios from "axios";
 

@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  getDocs,
-  limit,
-} from "firebase/firestore";
+
 import { JobApplicationStatus } from "./JobApplicationStatus";
 import { UserProfileForm } from "./UserProfileForm";
+import axios from 'axios';
+
 export const UserProfile = ({ setUid }) => {
   const uid = localStorage.getItem("uid");
 
@@ -23,33 +18,27 @@ export const UserProfile = ({ setUid }) => {
     title: "",
     status: "",
   });
-  const db = getFirestore();
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(
-        collection(db, "resumes"),
-        where("uid", "==", setUid),
-        limit(1)
-      );
-      const querySnapshot = await getDocs(q);
-      console.log(querySnapshot);
-      if (!querySnapshot.empty) {
-        const data = querySnapshot.docs[0].data();
+      try {
+        const response = await axios.get(`http://localhost:3000/profile?uid=${uid}`);
         setUser({
-          first_name: data.firstN || "",
-          last_name: data.lastN || "",
-          email: data.email || "",
-          phone: data.phone || "",
-          address: data.address || "",
-          resume: data.resume || "",
-          title: data.title || "",
-          status: data.status || "",
+          first_name: response.data.first_name || "",
+          last_name: response.data.last_name || "",
+          email: response.data.email || "",
+          phone: response.data.phone || "",
+          address: response.data.address || "",
+          resume: response.data.resume || "",
+          title: response.data.title || "",
+          status: response.data.status || "",
         });
+      } catch (error) {
+        console.error('Error:', error);
       }
     };
     fetchData();
-  }, [db, setUid]);
+  }, [uid]);
 
   return (
     <div className="container mt-4 mb-4">
@@ -89,7 +78,7 @@ export const UserProfile = ({ setUid }) => {
       <div className="card mt-4">
         <div className="card-body">
           <h3 className="card-title">Job Application Statuses</h3>
-          <JobApplicationStatus title={user.title} status={user.status} />
+          <JobApplicationStatus />
         </div>
       </div>
       <div className="card mt-4">
