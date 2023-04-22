@@ -42,6 +42,7 @@ export const TableRow = ({ items }) => {
       "http://localhost:3000/resumes/update",
       json
     );
+    window.location.reload();
     return response.data;
   };
 
