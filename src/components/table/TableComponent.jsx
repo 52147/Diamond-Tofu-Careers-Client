@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { TableRow } from "./TableRow";
-import {
-  Button,
-  Table,
-  Spinner,
-  Pagination,
-  Form,
-  Modal,
-} from "react-bootstrap";
+import { Table, Pagination } from "react-bootstrap";
 
 export const TableComponent = () => {
   const [data, setData] = useState([]);
   const [posts, setPosts] = useState([]);
   const [active, setActivePage] = useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,30 +20,29 @@ export const TableComponent = () => {
 
     fetchData();
   }, []);
-  useEffect(() => {
-    paginationClickHandler(1); // 當進入頁面時，paginationClickHandler設定為 1
-  }, []);
 
-  let tempArr = [];
-  const paginationClickHandler = (number) => {
-    tempArr = [];
-    for (let i = number * 10 - 10; i <= number * 10 - 1; i++) {
-      if (i < data.length) {
-        tempArr.push(data[i]); // temArr用來更新 post，將data推入 temArr，每次推入10筆資料
-      }
+  useEffect(() => {
+    if (data.length > 0) {
+      paginationClickHandler(1);
     }
-    setActivePage(number); // 展示完頁面後，設定pagination的數字標示為active
-    setPosts(tempArr); // 更新 post 為 temArr
+  }, [data]);
+
+  const paginationClickHandler = (number) => {
+    const startIndex = (number - 1) * 10;
+    const endIndex = startIndex + 10;
+    setActivePage(number);
+    setPosts(() => data.slice(startIndex, endIndex));
   };
-  const pageNumbers = Math.ceil(data.length / 10); // 資料數量／１０為Pagination 圖標數量
-  // let active = 1;
-  let items = [];
+
+  const pageNumbers = Math.ceil(data.length / 10);
+
+  const items = [];
   for (let number = 1; number <= pageNumbers; number++) {
     items.push(
       <Pagination.Item
-        onClick={() => paginationClickHandler(number)} // 點擊 Pagination 圖標，推１０比資料到temArr
         key={number}
-        active={number === active} // 當pagination圖標的數字 等於我們點擊的圖標，設圖標為active
+        active={number === active}
+        onClick={() => paginationClickHandler(number)}
       >
         {number}
       </Pagination.Item>
@@ -57,40 +50,41 @@ export const TableComponent = () => {
   }
 
   return (
-    <>
-      <div className="container">
-        <div className="pt-3.5 text-center text-violet-700">
-          <h1>Form Data Table</h1>
-        </div>
+    <div className="container">
+      <div className="pt-3.5 text-center text-violet-700">
+        <h1>Form Data Table</h1>
+      </div>
 
-        <div className="table-responsive">
-          <table className="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Location</th>
-                <th>Email</th>
-                <th>Education</th>
-                <th>Accomplishments</th>
-                <th>Visa Status</th>
-                <th>Website Link</th>
-                <th>Resume Link</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <TableRow key={posts.id} items={posts} />
-            </tbody>
-          </table>
+      <div className="table-responsive">
+        <Table bordered striped>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Location</th>
+              <th>Email</th>
+              <th>Education</th>
+              <th>Accomplishments</th>
+              <th>Visa Status</th>
+              <th>Website Link</th>
+              <th>Resume Link</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <TableRow items={posts} />
+          </tbody>
+        </Table>
+
+        {data.length > 0 && (
           <div className="mt-2 d-flex justify-content-center">
             <Pagination className="justify-content-end me-5">
               {items}
             </Pagination>
           </div>
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };

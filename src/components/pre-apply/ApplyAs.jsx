@@ -25,19 +25,16 @@ export const ApplyAs = ({ setUid }) => {
   const jobOpenings = [
     {
       title: "Software Engineer",
-      company: "Acme Inc.",
       location: "San Francisco",
       date: "April 2023",
     },
     {
       title: "Data Analyst",
-      company: "Widgets Co.",
       location: "New York",
       date: "May 2023",
     },
     {
       title: "Marketing Manager",
-      company: "Gizmos LLC",
       location: "Los Angeles",
       date: "June 2023",
     },
@@ -65,7 +62,7 @@ export const ApplyAs = ({ setUid }) => {
               Sign In
             </Button>
           </div>
-          <div className="mt-8">
+          {/* <div className="mt-8">
             <h2 className="text-2xl font-bold mb-4">Job Openings</h2>
             <Table striped bordered hover>
               <thead>
@@ -87,7 +84,7 @@ export const ApplyAs = ({ setUid }) => {
                 ))}
               </tbody>
             </Table>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
