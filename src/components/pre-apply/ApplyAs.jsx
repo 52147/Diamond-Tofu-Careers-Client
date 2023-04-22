@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import { useNavigate } from "react-router";
-import { signInWithGooglePopup } from "../../database/firebase";
+import { signInWithGoogle } from "../../database/firebase";
 
 export const ApplyAs = ({ setUid }) => {
   const navigate = useNavigate();
@@ -13,13 +13,15 @@ export const ApplyAs = ({ setUid }) => {
 
   const handleSignInClick = async () => {
     // Handle sign in process
-    const role = await signInWithGooglePopup();
-
-    if (role == 1) {
-      navigate("/table");
-    } else if (role == 2) {
-      navigate("/form");
-    }
+    const result = await signInWithGoogle();
+    console.log(result);
+    const user = result.user;
+    const uid = user.uid;
+    console.log(user);
+    console.log(uid);
+    localStorage.setItem("uid", uid);
+    localStorage.setItem("isLoggedIn", true);
+    navigate("/form");
   };
 
   const jobOpenings = [
@@ -48,16 +50,14 @@ export const ApplyAs = ({ setUid }) => {
             Job Application
           </h1>
           <p className="text-center mb-8">Apply as Guest or Sign in.</p>
-          <div className="flex justify-center items-center gap-1">
+          <div className="btn-color flex justify-center items-center gap-1">
             <Button
               onClick={handleGuestApplyClick}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
             >
               Apply as Guest
             </Button>
             <Button
               onClick={handleSignInClick}
-              className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
             >
               Sign In
             </Button>

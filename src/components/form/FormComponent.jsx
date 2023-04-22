@@ -45,7 +45,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const handleClose2 = () => setShowSuccessModal(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
-
+  const now_uid = localStorage.getItem("uid");
   const navigate = useNavigate();
 
   const form = useRef();
@@ -69,7 +69,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       setShow(true); // show warning modal
       return;
     }
-
+    
     const postData = {
       id: 1,
       firstN: firstN,
@@ -82,7 +82,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       visa: visa,
       link: link,
       resume: resume,
-      uid: setUid,
+      uid: now_uid,
       status: "Pending",
     };
     try {

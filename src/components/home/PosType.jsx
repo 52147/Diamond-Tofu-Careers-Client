@@ -49,7 +49,6 @@ export const PosType = ({ setTitle }) => {
             return (
               <div className="col-12 col-lg-4 card">
                 <img className="card-image" src={value.cover} alt="" />
-
                 <div className="card-info">
                   <h2 className="title">{value.heading}</h2>
                   <p className="summary">{value.summary}</p>

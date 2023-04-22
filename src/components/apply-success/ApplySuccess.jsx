@@ -30,12 +30,11 @@ export const ApplySuccess = ({ setDocument }) => {
     }
   };
 
-
   return (
     <>
       <div className="jobdes">
-        <div className="container text-center">
-          <h1>Application Submitted Successfully!</h1>
+        <div className="btn-color container text-center">
+          <h1 className="text-violet-700">Application Submitted Successfully!</h1>
           <p>Thank you for your submission.</p>
           Do you still want to register?
           <Button onClick={handleSignIn}>Sign in with Google</Button>

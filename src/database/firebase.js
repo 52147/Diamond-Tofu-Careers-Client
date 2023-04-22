@@ -28,6 +28,10 @@ provider.setCustomParameters({
 });
 
 export const auth = getAuth();
+export const signInWithGoogle = async() =>{
+  const result = await signInWithPopup(auth, provider);
+  return result;
+} 
 
 export const signInWithGooglePopup = async (id, newStatus) => {
   const result = await signInWithPopup(auth, provider);

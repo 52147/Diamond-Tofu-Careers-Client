@@ -1,51 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-body{
-  font-family: 'Roboto',
-  sans-serif;
-  ;
+body {
+  font-family: "Roboto", sans-serif;
 }
-.container{
+.container {
   border-top: 10px;
   max-width: 80%;
   margin: auto;
 }
-.headerflex{
+.headerflex {
   display: flex;
   justify-content: space-between;
 }
-ul{
+ul {
   list-style: none;
 }
-a{
+a {
   text-decoration: none;
 }
 /*--------------header--------------*/
-header{
+header {
   padding: 12px 0;
-  background-color: #7F44F8;
+  background-color: #7f44f8;
 }
-header ul{
+header ul {
   display: inline-block;
 }
-header ul li{
+header ul li {
   display: inline-block;
   margin-left: 30px;
 }
-header ul li a{
+header ul li a {
   font-weight: 500;
   transition: 0.5s;
 }
-header ul li a:hover{
-  color:  #7F44F8;
+header ul li a:hover {
+  color: #7f44f8;
   font-weight: 500;
 }
-header .active{
+header .active {
   position: sticky;
   top: 0;
   left: 0;
@@ -53,7 +51,7 @@ header .active{
   width: 100%;
   z-index: 10;
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
   /* ToDo: mobile version */
 }
 /*--------------header--------------*/
@@ -65,18 +63,15 @@ header .active{
 .logo {
   width: 80px;
 }
-
 a.underline-hover-effect {
   text-decoration: none;
   color: inherit;
 }
-
 .underline-hover-effect {
   display: inline-block;
   padding-bottom: 0.25rem; /* defines the space between text and underline */
   position: relative;
 }
-
 .underline-hover-effect::before {
   content: "";
   position: absolute;
@@ -90,28 +85,26 @@ a.underline-hover-effect {
 .underline-hover-effect:hover::before {
   width: 100%;
 }
-
 /*--------------Career--------------*/
-.flex{
+.flex {
   display: flex;
 }
-.home{
+.home {
   position: relative;
 }
 .home img {
   width: 100%;
   position: relative;
 }
-.home h1{
+.home h1 {
   /* font-size: 60px; */
   margin-top: 40px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-weight: bold;
   color: #fff;
   text-align: center;
   letter-spacing: 5px;
-  text-shadow: 3px 3px 20px #b590ff,
-    -2px 1px 30px #b590ff;
+  text-shadow: 3px 3px 20px #b590ff, -2px 1px 30px #b590ff;
 }
 .middleText {
   position: absolute;
@@ -130,10 +123,9 @@ a.underline-hover-effect {
 .card-group {
   display: flex;
   justify-content: center;
-  gap: 0 50px;  /*用gap 將 3 個flex box 分開*/
+  gap: 0 50px; /*用gap 將 3 個flex box 分開*/
   margin-top: 30px;
 }
-
 .card-group .card {
   flex-direction: column;
   background-color: #ffffff;
@@ -143,27 +135,21 @@ a.underline-hover-effect {
   margin-bottom: 30px;
   border: 0;
 }
-
 .card-image {
   width: 80px;
   height: 80px;
-
   display: block;
   margin: 0 auto 12px auto;
 }
-
 .card-info .title {
   margin: 20px 8px;
-
   text-align: center;
-
   font-weight: 700;
   font-size: 20px;
 }
 .card-info .summary {
   min-height: 150px;
 }
-
 .btn-block {
   display: flex;
   justify-content: center;
@@ -171,18 +157,20 @@ a.underline-hover-effect {
 }
 .btn-block button {
   width: 100px;
-
   background-color: #b590ff;
   border: 0;
 }
-.btnpadding{
+.btn-color button{
+  background-color: #b590ff; /*紫色背景只套用在button上*/
+  border: 0; /*去掉boostrap button 原有的藍色border*/
+}
+.btnpadding {
   padding-bottom: 10px;
 }
-
 /*--------------Position--------------*/
 
 /*--------------Job Des--------------*/
-.jobdes{
+.jobdes {
   width: 700px;
   margin: 50px auto;
   border: 5px solid #eee;
@@ -190,62 +178,40 @@ a.underline-hover-effect {
 .des {
   justify-content: center;
   text-align: center;
-  border: 1px solid #7F44F8;
+  border: 1px solid #7f44f8;
 }
-.padding-top{
+.padding-top {
   padding-top: 10px;
 }
 /*--------------Job Des--------------*/
 
 /*--------------Footer--------------*/
-footer{
-  background-color: #7F44F8;
+footer {
+  background-color: #7f44f8;
   padding: 20px 0 20px 0;
   color: #fff;
 }
-
 footer ul {
   padding: 0;
 }
-
 .footer-block {
   display: flex;
   justify-content: center;
-
   gap: 32px;
 }
-
 .footer-list-icon {
   margin-right: 12px;
 }
-/* .icon{
-  margin-left: 20px;
-  padding: 20px ;
-  border: 1px solid #fff;
-}
-.box{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-.box h2{
-  text-align: center;
-  padding-bottom: 10px;
-} */
 /*--------------Footer--------------*/
 
 /*--------------Login--------------*/
-
-
 .container h1 {
   font-size: 40px;
   margin-bottom: 5px;
 }
-
 .pClass {
   margin-bottom: 2%;
 }
-
 .inputClass {
   border: 1px solid #b590ff;
   background-color: rgba(252, 252, 252, 0.2);
@@ -260,29 +226,26 @@ footer ul {
   color: rgb(0, 0, 0);
   font-weight: 300;
 }
-
 .buttonClass {
   outline: 0;
-  background-color: #7F44F8;
-  border-style: solid #7F44F8;
+  background-color: #7f44f8;
+  border-style: solid #7f44f8;
   padding: 10px 15px;
   color: #fff;
   border-radius: 3px;
   width: 250px;
   font-size: 18px;
-  border: solid #7F44F8;
-
+  border: solid #7f44f8;
 }
-.buttonClass:hover{
+.buttonClass:hover {
   outline: 0;
   background-color: #fff;
-  border-style: solid #7F44F8;
+  border-style: solid #7f44f8;
   padding: 10px 15px;
-  color: #7F44F8;
+  color: #7f44f8;
   border-radius: 3px;
   width: 250px;
   font-size: 18px;
   transition-duration: 0.4s;
-
 }
 /*--------------Login--------------*/
