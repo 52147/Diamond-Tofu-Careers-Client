@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faLocation,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLocation } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-
-
 
 export const Footer = () => {
   const [showFooter, setShowFooter] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const isBottom = (window.innerHeight + window.pageYOffset) >= document.body.scrollHeight;
+      const isBottom =
+        window.innerHeight + window.pageYOffset >= document.body.scrollHeight;
       setShowFooter(isBottom);
     };
 
     const handleResize = () => {
-      const isFullHeight = document.documentElement.clientHeight >= document.documentElement.scrollHeight;
-      const isShortContent = document.documentElement.scrollHeight <= window.innerHeight;
+      const isFullHeight =
+        document.documentElement.clientHeight >=
+        document.documentElement.scrollHeight;
+      const isShortContent =
+        document.documentElement.scrollHeight <= window.innerHeight;
       setShowFooter(isFullHeight || isShortContent);
-    }
+    };
 
     handleResize();
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   return (
@@ -40,7 +39,9 @@ export const Footer = () => {
             <div className="md:col-span-1">
               <img src="DT logo.png" alt="" className="mb-6" />
               <div>
-                <h2 className="text-xl font-bold mb-2 text-white">Get in Touch</h2>
+                <h2 className="text-xl font-bold mb-2 text-white">
+                  Get in Touch
+                </h2>
                 <ul>
                   <li className="flex items-center mb-2">
                     <span className="footer-list-icon mr-2">

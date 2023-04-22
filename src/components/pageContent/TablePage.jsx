@@ -1,7 +1,5 @@
-import React from 'react'
-import {TableComponent} from '../table/TableComponent';
+import React from "react";
+import { TableComponent } from "../table/TableComponent";
 export const TablePage = () => {
-  return (
-    <TableComponent/>
-  )
-}
+  return <TableComponent />;
+};

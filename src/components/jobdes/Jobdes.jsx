@@ -1,9 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
-export const Jobdes = ({ setTitle,  title}) => {
-  
+export const Jobdes = ({ setTitle, title }) => {
   console.log(setTitle);
   let jobTitle = "";
   let jobDescription = "";

@@ -1,20 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import { Button, Modal } from "react-bootstrap";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router";
-
+import axios from "axios";
 import emailjs from "@emailjs/browser";
-import {
-  db,
-  updateData,
-  useDbData,
-  useDbUpdate,
-} from "../../database/firebase";
+
 export const FormComponent = ({ setTitle, setDocument, setUid }) => {
-  
   const apply = localStorage.getItem("apply");
   console.log(apply);
   let [position, setPosition] = useState("");
@@ -34,19 +25,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
     }
   }, [apply]);
   console.log(position);
-  // if(apply == "internship-software-engineer"){
-  //   setPosition("Internship Software Engineer")
-  // }else if(apply == "full-time-software-engineer"){
-  //   setPosition("Full-Time Software Engineer")
-  // }else if(apply == "internship-data-scientist"){
-  //   setPosition("Internship Data Scientist")
-  // }else if(apply == "full-time-data-scientist"){
-  //   setPosition("Full-Time Data Scientist")
-  // }else if(apply == "internship-project-manager"){
-  //   setPosition("Internship Project Manager")
-  // }else if(apply == "full-time-project-manager"){
-  //   setPosition("Full-Time Project Manager")
-  // }
+
   console.log(setTitle);
   console.log(setUid);
   let [firstN, setUsername] = useState("");
@@ -59,7 +38,6 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
   let [resume, setResume] = useState("");
   let [link, setLink] = useState("");
 
-  
   let [privacyChecked, setPrivacyChecked] = useState(false); // new state variable for privacy checkbox
 
   const handleClose = () => setShow(false);
@@ -70,10 +48,6 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
 
   const navigate = useNavigate();
 
-  
-
-
-  if(setTitle == ""){}
   const form = useRef();
 
   async function writeNewPost(e) {
@@ -100,7 +74,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       id: 1,
       firstN: firstN,
       lastN: lastN,
-      title: "Intern SDE", // PM | full-time ...
+      title: position, // PM | full-time ...
       email: email,
       location: location,
       education: education,
@@ -109,19 +83,17 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       link: link,
       resume: resume,
       uid: setUid,
-      status: "Pending"
+      status: "Pending",
     };
-
     try {
-      const docRef = await addDoc(collection(db, "resumes"), postData);
-
+      const response = await axios.post("http://localhost:3000/form", postData);
       setShowSuccessModal(true);
       navigate("/apply");
-
-      console.log("Document written with ID: ", docRef.id);
-      setDocument(docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+      setDocument(response.data);
+      console.log(response.data.id);
+      localStorage.removeItem("position");
+    } catch (error) {
+      console.error("Error submitting application: ", error);
     }
 
     const templateParams = {
@@ -146,27 +118,6 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
           console.log(error.text);
         }
       );
-  }
-  async function getPosts() {
-    // const dbRef = ref(getDatabase());
-    // get(child(dbRef, `/testuser/${lastN}`))
-    //   .then((snapshot) => {
-    //     if (snapshot.exists()) {
-    //       console.log(snapshot.val());
-    //     } else {
-    //       console.log("No data available");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-
-    const querySnapshot = await getDocs(collection(db, "resumes"));
-    return querySnapshot.docs.map((doc) => {
-      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-
-      return doc.data();
-    });
   }
 
   return (
@@ -381,35 +332,37 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
           <Modal.Body>
             <p>
               LAST UPDATED: April 2023 The Diamond Tofu, Inc. and its
-              subsidiaries and affiliates https://diamondtofu.com(“we”, “Diamond Tofu”)
-              understand that your privacy is important.<br /><br />
-
-              With this Privacy Policy, Diamond Tofu aims to make sure you understand how Diamond
-              Tofu maintains and collects your personal information[1], explain
-              the purposes of Diamond Tofu processing your personal information
-              for how long and additionally inform you on your rights and give
-              an understanding of certain requirements under any applicable data
-              protection legislation that relate to data protection, privacy,
-              the use of information relating to individuals, and or the
-              information rights of individuals to which you and/or Diamond Tofu
-              are subject to, and any relevant national laws implementing the
-              same (“Applicable Data Privacy Laws”). This Privacy Policy only
-              applies to the personal information of job applicants, potential
-              candidates for employment, and participants of our optional
-              recruiting programs and events. If you are a California resident,
-              please see the California Addendum at the end of this Privacy
-              Policy for further details on how we handle your information and
-              how to exercise your rights. Some of our online recruiting
-              activities enable access to external sites operated by third
-              parties, which are not governed by this Privacy Policy. We
+              subsidiaries and affiliates https://diamondtofu.com(“we”, “Diamond
+              Tofu”) understand that your privacy is important.
+              <br />
+              <br />
+              With this Privacy Policy, Diamond Tofu aims to make sure you
+              understand how Diamond Tofu maintains and collects your personal
+              information[1], explain the purposes of Diamond Tofu processing
+              your personal information for how long and additionally inform you
+              on your rights and give an understanding of certain requirements
+              under any applicable data protection legislation that relate to
+              data protection, privacy, the use of information relating to
+              individuals, and or the information rights of individuals to which
+              you and/or Diamond Tofu are subject to, and any relevant national
+              laws implementing the same (“Applicable Data Privacy Laws”). This
+              Privacy Policy only applies to the personal information of job
+              applicants, potential candidates for employment, and participants
+              of our optional recruiting programs and events. If you are a
+              California resident, please see the California Addendum at the end
+              of this Privacy Policy for further details on how we handle your
+              information and how to exercise your rights. Some of our online
+              recruiting activities enable access to external sites operated by
+              third parties, which are not governed by this Privacy Policy. We
               encourage you to review the privacy policies of any such sites
-              before you submit information there. <br /><br />
+              before you submit information there. <br />
+              <br />
               WHAT INFORMATION DO WE COLLECT? <br />
-              The types of personal information that Diamond Tofu
-              requests from you and the ways that we process it are determined
-              by the requirements of the Diamond Tofu office’s country in which
-              the position is located, and not the country in which you reside.
-              If you apply to more than one location or if the role to which you
+              The types of personal information that Diamond Tofu requests from
+              you and the ways that we process it are determined by the
+              requirements of the Diamond Tofu office’s country in which the
+              position is located, and not the country in which you reside. If
+              you apply to more than one location or if the role to which you
               apply is available in more than one country, the types of personal
               information we request from you and the ways that we process it
               are determined by the requirements of all Diamond Tofu offices’
@@ -455,60 +408,72 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
               prescribed by Applicable Data Privacy laws or other relevant laws.
               You are not required to provide any requested information to us
               but failing to do so may result in not being able to continue your
-              candidacy for the job for which you have applied. <br/><br/>
-              HOW DO WE USE YOUR INFORMATION? <br/>
-              Personal information is processed in the
-              following ways and in accordance with Applicable Data Privacy
-              Laws, the processing is based on the lawful bases as stated below.
-              In some situations, as listed below, we may need to process your
-              personal data for the legitimate interests pursued by us for the
-              following purposes, unless consent is required specifically under
-              Applicable Data Privacy laws Recruiting and business management
-              reasons including, identifying, and evaluating candidates for
-              potential employment, as well as for future roles that may become
-              available Inviting you to recruiting events and keeping you
-              informed about recruiting programs In case of active sourcing,
-              analyzing if you might fit with a role and initiating contact with
-              you to assess suitability for the role you apply and to
-              communicate with you in relation to your application in case you
-              accept an offer from Diamond Tofu for a role, running background
-              checks [2], financial checks where applicable, and identity
-              verification Record keeping in relation to recruiting and hiring;
-              we will retain your data for a period of up to five years subject
-              to your consent, if you join a recruiting program; Store your data
-              on a global tool which also enables Diamond Tofu to assess your
-              application for available roles in different Diamond Tofu offices;
-              For marketing communications from Diamond Tofu based on your
-              consent where required[3] ensuring compliance with legal
-              requirements (e.g. immigration laws, tax laws), including
-              diversity requirements and practices; and protecting our legal
-              rights to the extent authorized or permitted by law. Whatever the
-              outcome of your application or other interaction with us, we may
-              also analyze, in anonymized form, your personal information or
-              aggregated data to improve our recruitment and hiring process by
-              using such information to build algorithms that will inform our
-              decisions about future candidates, and augment our ability to
-              attract successful candidates from diverse backgrounds. We process
-              your personal information for the purposes described above: when
-              we have your consent to do so, where applicable; when necessary to
-              enter into an employment contract with you; when necessary for us
-              to comply with a legal obligation; or when necessary for the
-              purposes of our legitimate interests as an employer operating
-              globally. You may withdraw your consent at any time by sending an
-              email to datasubjectrights@Diamond Tofu.com. For candidates in
-              Germany please email us at datenschutz@Diamond Tofu.com. <br /><br />
+              candidacy for the job for which you have applied. <br />
+              <br />
+              HOW DO WE USE YOUR INFORMATION? <br />
+              Personal information is processed in the following ways and in
+              accordance with Applicable Data Privacy Laws, the processing is
+              based on the lawful bases as stated below. In some situations, as
+              listed below, we may need to process your personal data for the
+              legitimate interests pursued by us for the following purposes,
+              unless consent is required specifically under Applicable Data
+              Privacy laws Recruiting and business management reasons including,
+              identifying, and evaluating candidates for potential employment,
+              as well as for future roles that may become available Inviting you
+              to recruiting events and keeping you informed about recruiting
+              programs In case of active sourcing, analyzing if you might fit
+              with a role and initiating contact with you to assess suitability
+              for the role you apply and to communicate with you in relation to
+              your application in case you accept an offer from Diamond Tofu for
+              a role, running background checks [2], financial checks where
+              applicable, and identity verification Record keeping in relation
+              to recruiting and hiring; we will retain your data for a period of
+              up to five years subject to your consent, if you join a recruiting
+              program; Store your data on a global tool which also enables
+              Diamond Tofu to assess your application for available roles in
+              different Diamond Tofu offices; For marketing communications from
+              Diamond Tofu based on your consent where required[3] ensuring
+              compliance with legal requirements (e.g. immigration laws, tax
+              laws), including diversity requirements and practices; and
+              protecting our legal rights to the extent authorized or permitted
+              by law. Whatever the outcome of your application or other
+              interaction with us, we may also analyze, in anonymized form, your
+              personal information or aggregated data to improve our recruitment
+              and hiring process by using such information to build algorithms
+              that will inform our decisions about future candidates, and
+              augment our ability to attract successful candidates from diverse
+              backgrounds. We process your personal information for the purposes
+              described above: when we have your consent to do so, where
+              applicable; when necessary to enter into an employment contract
+              with you; when necessary for us to comply with a legal obligation;
+              or when necessary for the purposes of our legitimate interests as
+              an employer operating globally. You may withdraw your consent at
+              any time by sending an email to datasubjectrights@Diamond
+              Tofu.com. For candidates in Germany please email us
+              at datenschutz@Diamond Tofu.com. <br />
+              <br />
               AUTOMATED SORTING OF CANDIDATES <br />
-              In certain jurisdictions, our recruitment process may include data analytics and algorithms to help us efficiently review the large quantities of candidates and application data that we receive.  When you submit a job application, the information you share with us will be screened and compared to the predefined responses and scores set for the relevant roles. You may also undergo a series of online assessments. We may collect data generated by your participation in psychological, technical or behavioral assessments. The predefined responses are based on data that indicates what good job performance at Diamond Tofu looks like and/or in relation to these assessments.  You will receive more information about the nature of such assessments before you participate in any of them.
-
-
-These results are always considered in tandem with, and not in lieu of, human judgment and evaluation of individual candidates.
-<br /><br />
-              
+              In certain jurisdictions, our recruitment process may include data
+              analytics and algorithms to help us efficiently review the large
+              quantities of candidates and application data that we receive.
+              When you submit a job application, the information you share with
+              us will be screened and compared to the predefined responses and
+              scores set for the relevant roles. You may also undergo a series
+              of online assessments. We may collect data generated by your
+              participation in psychological, technical or behavioral
+              assessments. The predefined responses are based on data that
+              indicates what good job performance at Diamond Tofu looks like
+              and/or in relation to these assessments. You will receive more
+              information about the nature of such assessments before you
+              participate in any of them. These results are always considered in
+              tandem with, and not in lieu of, human judgment and evaluation of
+              individual candidates.
+              <br />
+              <br />
               WHEN WILL WE SHARE YOUR INFORMATION? <br />
-              Diamond Tofu uses
-              carefully selected third-party service providers and business
-              partners who: provide a recruiting software system; process
-              information on our behalf to help run some of our internal
+              Diamond Tofu uses carefully selected third-party service providers
+              and business partners who: provide a recruiting software system;
+              process information on our behalf to help run some of our internal
               business operations including email distribution and IT services;
               assist us in recruiting talent, administering and evaluating
               pre-employment screening and testing, and improving our recruiting
@@ -516,10 +481,22 @@ These results are always considered in tandem with, and not in lieu of, human ju
               meetings and interviews; law enforcement bodies in order to comply
               with any legal obligation or court order. Diamond Tofu will ensure
               that legal mechanisms are in place with such third parties to
-              protect your personal information. <br /><br />
-              
-              HOW DO WE PROTECT YOUR INFORMATION?<br />
-              Diamond Tofu has in place appropriate technological and operational security processes designed to protect your personal information from loss, misuse, alteration or destruction. Only authorized employees and providers will have access to any data provided by you, and that access is limited by need. Each employee or provider having access to any personal information is obligated to maintain its confidentiality. Although we take steps that are generally accepted as industry standards to protect your personal information, Diamond Tofu cannot guarantee that your personally identifiable information will not become accessible to unauthorized persons. <br /><br />
+              protect your personal information. <br />
+              <br />
+              HOW DO WE PROTECT YOUR INFORMATION?
+              <br />
+              Diamond Tofu has in place appropriate technological and
+              operational security processes designed to protect your personal
+              information from loss, misuse, alteration or destruction. Only
+              authorized employees and providers will have access to any data
+              provided by you, and that access is limited by need. Each employee
+              or provider having access to any personal information is obligated
+              to maintain its confidentiality. Although we take steps that are
+              generally accepted as industry standards to protect your personal
+              information, Diamond Tofu cannot guarantee that your personally
+              identifiable information will not become accessible to
+              unauthorized persons. <br />
+              <br />
               HOW LONG WILL WE RETAIN YOUR INFORMATION? <br />
               If we do not employ you, we may continue to retain and use your
               personal information for a period of time (which may vary
@@ -533,7 +510,8 @@ These results are always considered in tandem with, and not in lieu of, human ju
               up to five years. If you join a recruiting program, but
               subsequently wish to withdraw, please contact us at
               datasubjectrights@Diamond Tofu.com. For candidates in Germany
-              please email us at datenschutz@Diamond Tofu.com. <br /><br />
+              please email us at datenschutz@Diamond Tofu.com. <br />
+              <br />
               YOUR RIGHTS <br />
               In accordance with Applicable Data Privacy Laws, including but not
               limited to the GDPR and the California Consumer Privacy Act
@@ -555,62 +533,67 @@ These results are always considered in tandem with, and not in lieu of, human ju
               Tofu.com. You also have a right to lodge a complaint with your
               local supervisory authority. For further questions you may contact
               the appropriate data protection point of contact: Data Protection
-              Office Boston, MA 02210 Contact Us <br /><br />
+              Office Boston, MA 02210 Contact Us <br />
+              <br />
               THIS RECRUITMENT PRIVACY POLICY <br />
-              We may change or update this Privacy Policy from
-              time to time. When we do, we will communicate changes and updates
-              to this Privacy Policy by posting the updated Privacy Policy on
-              this page with a new “Last Updated” date. <br /><br />
+              We may change or update this Privacy Policy from time to time.
+              When we do, we will communicate changes and updates to this
+              Privacy Policy by posting the updated Privacy Policy on this page
+              with a new “Last Updated” date. <br />
+              <br />
               CALIFORNIA ADDENDUM <br />
               This California Addendum applies to California residents and
-              supplements the information provided above in the Privacy Policy.<br /><br />
-              Collection and Disclosure of Personal Information<br />
-              The following
-              table details which categories of personal information we collect
-              and process, as well as which categories of personal information
-              we disclose to third parties for our operational business and
-              hiring and recruitment purposes, including within the 12 months
-              preceding the date this Privacy Policy was last updated.
-              Categories of Personal Information Disclosed to Which Categories
-              of Third Parties for Operational Business Purposes Identifiers,
-              such as name, postal address, unique personal identifiers, IP
-              address, email address, account name, online identifiers, and
-              government-issued identifiers Our affiliates; service providers
-              that provide services such as recruiting, candidate engagement,
+              supplements the information provided above in the Privacy Policy.
+              <br />
+              <br />
+              Collection and Disclosure of Personal Information
+              <br />
+              The following table details which categories of personal
+              information we collect and process, as well as which categories of
+              personal information we disclose to third parties for our
+              operational business and hiring and recruitment purposes,
+              including within the 12 months preceding the date this Privacy
+              Policy was last updated. Categories of Personal Information
+              Disclosed to Which Categories of Third Parties for Operational
+              Business Purposes Identifiers, such as name, postal address,
+              unique personal identifiers, IP address, email address, account
+              name, online identifiers, and government-issued identifiers Our
+              affiliates; service providers that provide services such as
+              recruiting, candidate engagement, employment screening and
+              background checks, consulting, IT and other services; professional
+              advisors, such as lawyers; public and governmental authorities,
+              such as regulatory authorities and law enforcement Personal
+              information as defined in the California customer records law,
+              such as name, contact information, and financial, education and
+              employment information Our affiliates; service providers that
+              provide services such as recruiting, candidate engagement,
               employment screening and background checks, consulting, IT and
               other services; professional advisors, such as lawyers; public and
               governmental authorities, such as regulatory authorities and law
-              enforcement Personal information as defined in the California
-              customer records law, such as name, contact information, and
-              financial, education and employment information Our affiliates;
-              service providers that provide services such as recruiting,
-              candidate engagement, employment screening and background checks,
+              enforcement Protected Class Information, such as characteristics
+              of protected classifications under California or federal law, such
+              as sex, age, gender, race, disability, citizenship,
+              military/veteran status, gender identity and expression, primary
+              language, and immigration status Our affiliates; service providers
+              that provide services such as employment screening and background
+              checks, consulting, IT and other services; professional advisors,
+              such as lawyers; public and governmental authorities, such as
+              regulatory authorities and law enforcement Commercial Information,
+              such as travel expenses Our affiliates; service providers that
+              provide services such as expense reimbursement provider,
               consulting, IT and other services; professional advisors, such as
               lawyers; public and governmental authorities, such as regulatory
-              authorities and law enforcement Protected Class Information, such
-              as characteristics of protected classifications under California
-              or federal law, such as sex, age, gender, race, disability,
-              citizenship, military/veteran status, gender identity and
-              expression, primary language, and immigration status Our
-              affiliates; service providers that provide services such as
-              employment screening and background checks, consulting, IT and
-              other services; professional advisors, such as lawyers; public and
-              governmental authorities, such as regulatory authorities and law
-              enforcement Commercial Information, such as travel expenses Our
-              affiliates; service providers that provide services such as
-              expense reimbursement provider, consulting, IT and other services;
+              authorities and law enforcement Internet or network activity
+              information, such as browsing history and interactions with our
+              website and other online portals or services Our affiliates;
+              service providers that provide services such as recruiting,
+              candidate engagement, consulting, IT and other services;
               professional advisors, such as lawyers; public and governmental
               authorities, such as regulatory authorities and law enforcement
-              Internet or network activity information, such as browsing history
-              and interactions with our website and other online portals or
-              services Our affiliates; service providers that provide services
-              such as recruiting, candidate engagement, consulting, IT and other
-              services; professional advisors, such as lawyers; public and
-              governmental authorities, such as regulatory authorities and law
-              enforcement Audio/Video Data. Audio, electronic, visual and
-              similar information, such as photographs and call and video
-              recordings Our affiliates; service providers that provide services
-              such as recruiting, candidate engagement consulting, IT and other
+              Audio/Video Data. Audio, electronic, visual and similar
+              information, such as photographs and call and video recordings Our
+              affiliates; service providers that provide services such as
+              recruiting, candidate engagement consulting, IT and other
               services; professional advisors, such as lawyers; public and
               governmental authorities, such as regulatory authorities and law
               enforcement Education Information subject to the federal Family
@@ -655,42 +638,73 @@ These results are always considered in tandem with, and not in lieu of, human ju
               monitoring diversity, making you an offer (subject to our
               discretion), fulfilling administrative functions, complying with
               law, legal process, or requests from governmental or regulatory
-              authorities, and exercising or defending legal claims. <br /><br />
-              Individual Requests<br />
+              authorities, and exercising or defending legal claims. <br />
+              <br />
+              Individual Requests
+              <br />
               You may, subject to applicable law, make the following requests:
-
-
-1. You may request that we disclose to you the following information:
-The categories of personal information we collected about you and the categories of sources from which we collected such personal information
-The business or commercial purpose for collecting personal information about you; and
-The categories of personal information about you that we otherwise disclosed, and the categories of third parties to whom we disclosed such personal information
-
-
-2. You may request to correct inaccuracies in your personal information
-
-
-3. You may request to have your personal information deleted
-
-
-4. You may request to receive the specific pieces of your personal information, including a copy of the personal information you provided to us in a portable format
-
-
-We will not unlawfully retaliate against you for making an individual request. To make a request.  We may need to request additional personal information from you, such as a copy of your driver’s license, and utility bill in order to verify your identity and protect against fraudulent requests. If you maintain a password-protected account with us, we may verify your identity through our existing authentication practices for your account and require you to re-authenticate yourself before disclosing or deleting your personal information.  If you make a request to delete, we may ask you to confirm your request before we delete your personal information.
-<br /><br />
+              1. You may request that we disclose to you the following
+              information: The categories of personal information we collected
+              about you and the categories of sources from which we collected
+              such personal information The business or commercial purpose for
+              collecting personal information about you; and The categories of
+              personal information about you that we otherwise disclosed, and
+              the categories of third parties to whom we disclosed such personal
+              information 2. You may request to correct inaccuracies in your
+              personal information 3. You may request to have your personal
+              information deleted 4. You may request to receive the specific
+              pieces of your personal information, including a copy of the
+              personal information you provided to us in a portable format We
+              will not unlawfully retaliate against you for making an individual
+              request. To make a request. We may need to request additional
+              personal information from you, such as a copy of your driver’s
+              license, and utility bill in order to verify your identity and
+              protect against fraudulent requests. If you maintain a
+              password-protected account with us, we may verify your identity
+              through our existing authentication practices for your account and
+              require you to re-authenticate yourself before disclosing or
+              deleting your personal information. If you make a request to
+              delete, we may ask you to confirm your request before we delete
+              your personal information.
+              <br />
+              <br />
               Authorized Agents <br />
-              If an agent would like to make a request on your behalf as permitted by applicable law, the agent may use the submission methods noted in the section entitled “Individuaequests.”  As part of our verification process, we may request that the agent provide, as applicable, proof concerning their status as authorized agents.  In addition, we may require that you verify your identity as described in the section entitled “Individual Requests” or confirm that you provided the agent permission to submit the request.<br /><br />
-              FOOTNOTES [1]<br />
-              [1] Personal data only includes information relating to natural persons who can be identified or who are identifiable, directly from the information in question; or who can be indirectly identified from that information in combination with other information.
-
-
-[2] Diamond Tofu only uses publicly available information for running background checks.
-
-
-[3] Data transfers within Diamond Tofu entities are governed by Diamond Tofu’s intra company agreements, local data export restrictions and/or local data privacy laws.
-
-
-[4] CPRA defines sensitive personal information as personal information that reveals an individual’s social security, driver’s license, state identification card, or passport number; account log-in, financial account, debit card, or credit card number in combination with any required security or access code, password, or credentials allowing access to an account; precise geolocation; racial or ethnic origin, religious or philosophical beliefs, citizenship, immigration status, or union membership; the contents of mail, email, and text messages unless Diamond Tofu is the intended recipient of the communication; genetic data; The processing of biometric information for the purpose of uniquely identifying an individual; Personal information collected and analyzed concerning an individual’s health; and Personal information collected and analyzed concerning an individual’s sex life or sexual orientation.
-
+              If an agent would like to make a request on your behalf as
+              permitted by applicable law, the agent may use the submission
+              methods noted in the section entitled “Individuaequests.” As part
+              of our verification process, we may request that the agent
+              provide, as applicable, proof concerning their status as
+              authorized agents. In addition, we may require that you verify
+              your identity as described in the section entitled “Individual
+              Requests” or confirm that you provided the agent permission to
+              submit the request.
+              <br />
+              <br />
+              FOOTNOTES [1]
+              <br />
+              [1] Personal data only includes information relating to natural
+              persons who can be identified or who are identifiable, directly
+              from the information in question; or who can be indirectly
+              identified from that information in combination with other
+              information. [2] Diamond Tofu only uses publicly available
+              information for running background checks. [3] Data transfers
+              within Diamond Tofu entities are governed by Diamond Tofu’s intra
+              company agreements, local data export restrictions and/or local
+              data privacy laws. [4] CPRA defines sensitive personal information
+              as personal information that reveals an individual’s social
+              security, driver’s license, state identification card, or passport
+              number; account log-in, financial account, debit card, or credit
+              card number in combination with any required security or access
+              code, password, or credentials allowing access to an account;
+              precise geolocation; racial or ethnic origin, religious or
+              philosophical beliefs, citizenship, immigration status, or union
+              membership; the contents of mail, email, and text messages unless
+              Diamond Tofu is the intended recipient of the communication;
+              genetic data; The processing of biometric information for the
+              purpose of uniquely identifying an individual; Personal
+              information collected and analyzed concerning an individual’s
+              health; and Personal information collected and analyzed concerning
+              an individual’s sex life or sexual orientation.
             </p>
           </Modal.Body>
           <Modal.Footer>

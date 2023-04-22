@@ -23,7 +23,7 @@ import {
 function App() {
   const [title, setTitle] = useState("full-time");
   const [document, setDocument] = useState("doc");
-  const [uid, setUid] = useState("doc");
+  const [uid, setUid] = useState("not login");
   const [title2, setTitle2] = useState("title2");
   console.log(title);
   console.log(document);

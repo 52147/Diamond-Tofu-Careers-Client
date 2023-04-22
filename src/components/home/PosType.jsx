@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const PosType = ({ setTitle, }) => {
+export const PosType = ({ setTitle }) => {
   const data = [
     {
       id: "1",
@@ -13,8 +13,7 @@ export const PosType = ({ setTitle, }) => {
       fullpage: "jobdes",
       internpage: "jobdes",
       title_intern: "internship-software-engineer",
-      title_full: "full-time-software-engineer"
-
+      title_full: "full-time-software-engineer",
     },
     {
       id: "2",
@@ -25,7 +24,7 @@ export const PosType = ({ setTitle, }) => {
       fullpage: "jobdes",
       internpage: "jobdes",
       title_intern: "internship-data-scientist",
-      title_full: "full-time-data-scientist"
+      title_full: "full-time-data-scientist",
     },
     {
       id: "3",
@@ -36,7 +35,7 @@ export const PosType = ({ setTitle, }) => {
       fullpage: "jobdes",
       internpage: "jobdes",
       title_intern: "internship-project-manager",
-      title_full: "full-time-project-manager"
+      title_full: "full-time-project-manager",
     },
   ];
 

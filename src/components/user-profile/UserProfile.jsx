@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import { JobApplicationStatus } from "./JobApplicationStatus";
 import { UserProfileForm } from "./UserProfileForm";
-import axios from 'axios';
+import axios from "axios";
 
 export const UserProfile = ({ setUid }) => {
   const uid = localStorage.getItem("uid");
@@ -22,7 +21,9 @@ export const UserProfile = ({ setUid }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/profile?uid=${uid}`);
+        const response = await axios.get(
+          `http://localhost:3000/profile?uid=${uid}`
+        );
         setUser({
           first_name: response.data.first_name || "",
           last_name: response.data.last_name || "",
@@ -34,7 +35,7 @@ export const UserProfile = ({ setUid }) => {
           status: response.data.status || "",
         });
       } catch (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
       }
     };
     fetchData();
@@ -66,13 +67,11 @@ export const UserProfile = ({ setUid }) => {
               <strong>Address: </strong>
               {user.address}
             </li>
+            <li>
+              <strong>Resume Link: </strong>
+              {user.resume}
+            </li>
           </ul>
-        </div>
-      </div>
-      <div className="card mt-4">
-        <div className="card-body">
-          <h3 className="card-title">Resume</h3>
-          <p>{user.resume}</p>
         </div>
       </div>
       <div className="card mt-4">

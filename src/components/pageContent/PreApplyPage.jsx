@@ -1,8 +1,6 @@
-import React from 'react'
-import {ApplyAs} from '../pre-apply/ApplyAs';
+import React from "react";
+import { ApplyAs } from "../pre-apply/ApplyAs";
 
-export const PreApplyPage = ({setUid}) => {
-  return (
-   <ApplyAs setUid = {setUid}/>
-  )
-}
+export const PreApplyPage = ({ setUid }) => {
+  return <ApplyAs setUid={setUid} />;
+};

@@ -1,37 +1,38 @@
 import React, { useState } from "react";
-import {
-  getFirestore,
-  doc,
-  updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  limit,
-} from "firebase/firestore";
+import { Button, Modal } from "react-bootstrap";
+import axios from "axios";
+
 export const UserProfileForm = ({ user }) => {
   const [resume, setResume] = useState(user.resume);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.phone);
   const [address, setAddress] = useState(user.address);
+  const [showModal, setShowModal] = useState(false);
+  const handleModalClose = () => setShowModal(false);
 
-  const db = getFirestore();
-
-  const handleSubmit = async (updatedUser) => {
-    const uid = user.uid; // replace with user's UID
-    const userRef = doc(db, "resumes", uid);
-    console.log("hi");
-    try {
-      await updateDoc(userRef, updatedUser);
-      console.log("User updated successfully");
-    } catch (error) {
-      console.error("Error updating user: ", error);
+  const uid = localStorage.getItem("uid");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!email || !phone || !address || !resume) {
+      setShowModal(true);
+      setTimeout(() => setShowModal(false), 3000);
+      return;
     }
+    const updatedUser = {
+      email,
+      phone,
+      address,
+      resume,
+    };
+    const response = await axios.post(
+      `http://localhost:3000/profile/update?uid=${uid}`,
+      updatedUser
+    );
+    window.location.reload();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4">
-      <div className="form-group"></div>
+    <>
       <div className="form-group">
         <label htmlFor="email" className="text-lg font-bold">
           Email:
@@ -69,7 +70,7 @@ export const UserProfileForm = ({ user }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="email" className="text-lg font-bold">
+        <label htmlFor="resume" className="text-lg font-bold">
           Resume Link:
         </label>
         <input
@@ -80,7 +81,20 @@ export const UserProfileForm = ({ user }) => {
           onChange={(event) => setResume(event.target.value)}
         />
       </div>
-      <button className="btn btn-primary btn-block mt-4">Save</button>
-    </form>
+      <Button onClick={handleSubmit} className="btn btn-primary btn-block mt-4">
+        Save
+      </Button>
+      <Modal show={showModal} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Missing Fields</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Please fill in all fields before submitting</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
