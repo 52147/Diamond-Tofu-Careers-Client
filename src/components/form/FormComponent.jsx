@@ -37,7 +37,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
   let [visa, setVisa] = useState("");
   let [resume, setResume] = useState("");
   let [link, setLink] = useState("");
-
+  let [phone, setPhone] = useState("");
   let [privacyChecked, setPrivacyChecked] = useState(false); // new state variable for privacy checkbox
 
   const handleClose = () => setShow(false);
@@ -71,6 +71,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       !firstN ||
       !lastN ||
       !email ||
+      !phone ||
       !location ||
       !education ||
       !accomplish ||
@@ -90,6 +91,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       lastN: lastN,
       title: position, // PM | full-time ...
       email: email,
+      phone: phone,
       location: location,
       education: education,
       accomplish: accomplish,
@@ -182,6 +184,19 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
                   value={email}
                   name="user_email"
                   onChange={(event) => setEmail(event.target.value)}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control
+                  type="tel"
+                  placeholder="Phone Number"
+                  value={phone}
+                  name="phone"
+                  onChange={(event) => setPhone(event.target.value)}
                 />
               </Form.Group>
 

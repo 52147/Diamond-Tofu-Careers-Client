@@ -60,7 +60,7 @@ export const TableRow = ({ items }) => {
           <td>{item.education}</td>
           <td>{item.accomplish}</td>
           <td>{item.visa}</td>
-          <td>{item.website}</td>
+          <td>{item.link}</td>
           <td>
             <a href={item.resume} target="_blank" rel="noreferrer">
               View Resume

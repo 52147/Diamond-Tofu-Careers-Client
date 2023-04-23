@@ -1,8 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export const Jobdes = ({ setTitle, title }) => {
   console.log(setTitle);
+  const navigate = useNavigate();
   let jobTitle = "";
   let jobDescription = "";
   let jobDuration = "";
@@ -361,8 +363,14 @@ export const Jobdes = ({ setTitle, title }) => {
     jobDuration = "6-9 months";
   }
 
-  // title("new");
-  // console.log(title);
+  const status = localStorage.getItem("isLoggedIn");
+  const handleClick = () =>{
+    if(status === "true"){
+      navigate("/form")
+    }else{
+      navigate("/pre")
+    }
+  }
 
   return (
     <>
@@ -401,9 +409,7 @@ export const Jobdes = ({ setTitle, title }) => {
             <br />
             <div className="btnpadding btn-block ">
               <Button
-                onClick={() => {
-                  window.location.replace(`/pre`);
-                }}
+                onClick={handleClick}
               >
                 Apply
               </Button>

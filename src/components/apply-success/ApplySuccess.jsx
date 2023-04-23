@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { signInWithGooglePopup } from "../../database/firebase";
+import { signInWithGoogle } from "../../database/firebase";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -12,24 +12,19 @@ export const ApplySuccess = ({ setDocument }) => {
   const [showModal, setShowModal] = useState(false);
   console.log(setDocument);
 
-  const handleSignIn = async (result) => {
-    const role = await signInWithGooglePopup();
+  const handleSignIn = async () => {
+    const result = await signInWithGoogle();
     const uid = localStorage.getItem("uid");
     const data = {
       docID: setDocument,
     };
-    await axios.post(
-      `http://localhost:3000/login/later?uid=${uid}`,
-      data
-    );
-    localStorage.setItem("role", role);
-  
-    if (role == 1) {
-      navigate("/table");
-    } else if (role == 2) {
-      navigate("/user");
-    }
+    await axios.post(`http://localhost:3000/login/later?uid=${uid}`, data);
+    const role = localStorage.setItem("role", 2);
+    navigate("/user");
+
   };
+  
+
 
   return (
     <>

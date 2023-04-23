@@ -6,14 +6,14 @@ export const UserProfileForm = ({ user }) => {
   const [resume, setResume] = useState(user.resume);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.phone);
-  const [address, setAddress] = useState(user.address);
+  const [location, setLocation] = useState(user.location);
   const [showModal, setShowModal] = useState(false);
   const handleModalClose = () => setShowModal(false);
 
   const uid = localStorage.getItem("uid");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!email || !phone || !address || !resume) {
+    if (!email || !phone || !location || !resume) {
       setShowModal(true);
       setTimeout(() => setShowModal(false), 3000);
       return;
@@ -21,7 +21,7 @@ export const UserProfileForm = ({ user }) => {
     const updatedUser = {
       email,
       phone,
-      address,
+      location,
       resume,
     };
     const response = await axios.post(
@@ -65,8 +65,8 @@ export const UserProfileForm = ({ user }) => {
           type="text"
           id="address"
           className="form-control mt-2"
-          value={address}
-          onChange={(event) => setAddress(event.target.value)}
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
         />
       </div>
       <div className="form-group">

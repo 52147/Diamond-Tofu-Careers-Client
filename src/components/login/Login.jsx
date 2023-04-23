@@ -31,6 +31,9 @@ export const Login = ({ setUid }) => {
     } else if (role == 2) {
       navigate("/user");
     } else if (role == 3) {
+      localStorage.removeItem("uid");
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("role");
       setNoDoc(true);
     }
   };
@@ -42,6 +45,7 @@ export const Login = ({ setUid }) => {
       window.location.reload();
     }, "1500");
   };
+  console.log(isLoggedIn);
 
   return (
     <>

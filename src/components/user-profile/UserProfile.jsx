@@ -12,7 +12,7 @@ export const UserProfile = ({ setUid }) => {
     name: "",
     email: "",
     phone: "",
-    address: "",
+    location: "",
     resume: "",
     title: "",
     status: "",
@@ -29,7 +29,7 @@ export const UserProfile = ({ setUid }) => {
           last_name: response.data.last_name || "",
           email: response.data.email || "",
           phone: response.data.phone || "",
-          address: response.data.address || "",
+          location: response.data.location || "",
           resume: response.data.resume || "",
           title: response.data.title || "",
           status: response.data.status || "",
@@ -65,7 +65,7 @@ export const UserProfile = ({ setUid }) => {
             </li>
             <li>
               <strong>Address: </strong>
-              {user.address}
+              {user.location}
             </li>
             <li>
               <strong>Resume Link: </strong>

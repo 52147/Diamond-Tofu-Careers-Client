@@ -21,6 +21,7 @@ export const ApplyAs = ({ setUid }) => {
     console.log(uid);
     localStorage.setItem("uid", uid);
     localStorage.setItem("isLoggedIn", true);
+    localStorage.setItem("role", 2);
     navigate("/form");
   };
 

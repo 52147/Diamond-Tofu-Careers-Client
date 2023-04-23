@@ -30,8 +30,13 @@ provider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGoogle = async() =>{
   const result = await signInWithPopup(auth, provider);
+  const user = result.user;
+  const uid = user.uid;
+  localStorage.setItem("uid", uid);
+  localStorage.setItem("isLoggedIn", true);
   return result;
-} 
+}
+
 
 export const signInWithGooglePopup = async (id, newStatus) => {
   const result = await signInWithPopup(auth, provider);
@@ -39,7 +44,7 @@ export const signInWithGooglePopup = async (id, newStatus) => {
   const uid = user.uid;
   localStorage.setItem("uid", uid);
   localStorage.setItem("isLoggedIn", true);
-
+  
   const response = await axios.post("http://localhost:3000/login", result);
   console.log(response.data);
   return response.data;
