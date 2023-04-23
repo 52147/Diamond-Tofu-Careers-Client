@@ -50,6 +50,20 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
 
   const form = useRef();
 
+  const today = new Date();
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+    timeZone: "America/New_York",
+  };
+  const currentDateTime = today.toLocaleString("en-US", options);
+  console.log(currentDateTime); // Output: e.g. "April 22, 2023, 9:30:45 AM"
+
   async function writeNewPost(e) {
     e.preventDefault(); // prevent form submission when the Apply button is clicked
 
@@ -69,7 +83,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       setShow(true); // show warning modal
       return;
     }
-    
+
     const postData = {
       id: 1,
       firstN: firstN,
@@ -84,6 +98,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       resume: resume,
       uid: now_uid,
       status: "Pending",
+      apply_time: currentDateTime,
     };
     try {
       const response = await axios.post("http://localhost:3000/form", postData);

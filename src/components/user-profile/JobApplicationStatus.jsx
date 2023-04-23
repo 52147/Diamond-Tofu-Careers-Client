@@ -39,6 +39,7 @@ export const JobApplicationStatus = () => {
             <li key={document.id}>
               <div>Title: {document.title}</div>
               <div>Status: {document.status}</div>
+              <div>Apply Time: {document.apply_time}</div>
             </li>
           ))}
         </ul>

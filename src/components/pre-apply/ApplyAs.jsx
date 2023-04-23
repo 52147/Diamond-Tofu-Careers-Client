@@ -46,7 +46,7 @@ export const ApplyAs = ({ setUid }) => {
     <>
       <div className="jobdes">
         <div className="border p-4">
-          <h1 className="text-center text-4xl font-bold mb-8">
+          <h1 className="text-violet-700 text-center text-4xl font-bold mb-8">
             Job Application
           </h1>
           <p className="text-center mb-8">Apply as Guest or Sign in.</p>

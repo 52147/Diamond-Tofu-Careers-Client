@@ -7,6 +7,7 @@ import axios from "axios";
 
 export const ApplySuccess = ({ setDocument }) => {
   const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const [showModal, setShowModal] = useState(false);
   console.log(setDocument);
@@ -34,10 +35,16 @@ export const ApplySuccess = ({ setDocument }) => {
     <>
       <div className="jobdes">
         <div className="btn-color container text-center">
-          <h1 className="text-violet-700">Application Submitted Successfully!</h1>
+          <h1 className="text-violet-700">
+            Application Submitted Successfully!
+          </h1>
           <p>Thank you for your submission.</p>
-          Do you still want to register?
-          <Button onClick={handleSignIn}>Sign in with Google</Button>
+          {!isLoggedIn ? (
+            <div>
+              <p>Do you still want to register?</p>
+              <Button onClick={handleSignIn}>Sign in with Google</Button>
+            </div>
+          ) : null}
         </div>
       </div>
 
