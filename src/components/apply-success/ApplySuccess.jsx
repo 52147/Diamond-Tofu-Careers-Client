@@ -18,12 +18,12 @@ export const ApplySuccess = ({ setDocument }) => {
     const data = {
       docID: setDocument,
     };
-    const res = await axios.post(
+    await axios.post(
       `http://localhost:3000/login/later?uid=${uid}`,
       data
     );
     localStorage.setItem("role", role);
-
+  
     if (role == 1) {
       navigate("/table");
     } else if (role == 2) {

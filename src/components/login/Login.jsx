@@ -79,7 +79,7 @@ export const Login = ({ setUid }) => {
       }
     </div> */}
 
-          {isLoggedIn ? (
+          {isLoggedIn === "true"? (
             <div className="mt-4">
               <button
                 className="buttonClass inputClass"
