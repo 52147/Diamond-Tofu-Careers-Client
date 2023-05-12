@@ -6,6 +6,8 @@ import axios from "axios";
 import emailjs from "@emailjs/browser";
 
 export const FormComponent = ({ setTitle, setDocument, setUid }) => {
+  const MAX_WORD_LIMIT = 300;
+
   const apply = localStorage.getItem("apply");
   console.log(apply);
   let [position, setPosition] = useState("");
@@ -31,7 +33,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
   let [firstN, setUsername] = useState("");
   let [lastN, setlastname] = useState("");
   let [email, setEmail] = useState("");
-  let [location, setLocation] = useState("");
+  let [address, setAddress] = useState("");
   let [education, setEducation] = useState("");
   let [accomplish, setAccomplish] = useState("");
   let [visa, setVisa] = useState("");
@@ -72,7 +74,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       !lastN ||
       !email ||
       !phone ||
-      !location ||
+      !address ||
       !education ||
       !accomplish ||
       !visa ||
@@ -92,7 +94,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       title: position, // PM | full-time ...
       email: email,
       phone: phone,
-      location: location,
+      address: address,
       education: education,
       accomplish: accomplish,
       visa: visa,
@@ -136,6 +138,13 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
         }
       );
   }
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    const words = inputValue.split(" ");
+    if (words.length <= MAX_WORD_LIMIT) {
+      setAccomplish(inputValue);
+    }
+  };
 
   return (
     <>
@@ -199,32 +208,33 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
                   onChange={(event) => setPhone(event.target.value)}
                 />
               </Form.Group>
-
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Location</Form.Label>
+                <Form.Label>Address</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Location"
-                  value={location}
-                  onChange={(event) => setLocation(event.target.value)}
+                  placeholder="Address"
+                  value={address}
+                  onChange={(event) => setAddress(event.target.value)}
                 />
               </Form.Group>
 
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
+              <Form.Group>
                 <Form.Label>Education</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Education"
+                <Form.Select
                   value={education}
                   onChange={(event) => setEducation(event.target.value)}
-                />
+                >
+                  <option value="">Select an option</option>
+                  <option value="university">University</option>
+                  <option value="graduate">Graduate</option>
+                  <option value="high-school">High School</option>
+                  <option value="phd">PhD</option>
+                </Form.Select>
               </Form.Group>
+              <br />
 
               <Form.Group
                 className="mb-3"
@@ -234,24 +244,29 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  type="text"
                   placeholder="accomplishments"
                   value={accomplish}
-                  onChange={(event) => setAccomplish(event.target.value)}
+                  onChange={handleInputChange}
                 />
+                <div>{`${
+                  accomplish.split(" ").length
+                } words out of ${MAX_WORD_LIMIT} words used.`}</div>
               </Form.Group>
 
               <Form.Group
                 className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
+                controlId="exampleForm.ControlSelect1"
               >
-                <Form.Label> Visa Status</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Visa"
+                <Form.Label>Visa Status</Form.Label>
+                <Form.Select
                   value={visa}
                   onChange={(event) => setVisa(event.target.value)}
-                />
+                >
+                  <option value="">Select an option</option>
+                  <option value="us-citizen">US Citizen</option>
+                  <option value="green-card">Green Card Holder</option>
+                  <option value="f1">F-1</option>
+                </Form.Select>
               </Form.Group>
 
               <Form.Group

@@ -15,6 +15,7 @@ export const TableRow = ({ items }) => {
 
     // Replace with your own template parameter values
     const templateParams = {
+      from_name: "Diamond Tofu",
       user_email: item.email,
       user_name: item.first_name + " " + item.last_name,
       message: "Your application be reviewed.",
