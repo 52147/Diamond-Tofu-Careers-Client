@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Form from "react-bootstrap/Form";
-import { Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
@@ -221,18 +220,22 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
                 />
               </Form.Group>
 
-              <Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
                 <Form.Label>Education</Form.Label>
-                <Form.Select
+                <Form.Control
+                  as="select"
                   value={education}
                   onChange={(event) => setEducation(event.target.value)}
                 >
                   <option value="">Select an option</option>
-                  <option value="university">University</option>
-                  <option value="graduate">Graduate</option>
                   <option value="high-school">High School</option>
+                  <option value="Bachlor">Bachlor</option>
+                  <option value="Master">Master</option>
                   <option value="phd">PhD</option>
-                </Form.Select>
+                </Form.Control>
               </Form.Group>
               <br />
 
