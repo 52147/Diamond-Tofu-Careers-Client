@@ -40,7 +40,7 @@ export const TableRow = ({ items }) => {
       status: newStatus,
     };
     const response = await axios.post(
-      "http://localhost:3000/resumes/update",
+      "https://us-central1-diamond-tofu-career.cloudfunctions.net/api/resumes/update",
       json
     );
     window.location.reload();

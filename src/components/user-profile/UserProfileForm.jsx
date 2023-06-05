@@ -25,7 +25,7 @@ export const UserProfileForm = ({ user }) => {
       resume,
     };
     const response = await axios.post(
-      `http://localhost:3000/profile/update?uid=${uid}`,
+      `https://us-central1-diamond-tofu-career.cloudfunctions.net/api/profile/update?uid=${uid}`,
       updatedUser
     );
     window.location.reload();

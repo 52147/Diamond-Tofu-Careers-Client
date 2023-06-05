@@ -10,7 +10,7 @@ export const TableComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/resumes");
+        const response = await fetch("https://us-central1-diamond-tofu-career.cloudfunctions.net/api/resumes");
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {

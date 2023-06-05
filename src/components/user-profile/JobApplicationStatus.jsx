@@ -10,7 +10,7 @@ export const JobApplicationStatus = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/profile/status?uid=${uid}`
+          `https://us-central1-diamond-tofu-career.cloudfunctions.net/api/profile/status?uid=${uid}`
         );
         setDocuments(response.data);
         setError(null);

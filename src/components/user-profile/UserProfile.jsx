@@ -22,7 +22,7 @@ export const UserProfile = ({ setUid }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/profile?uid=${uid}`
+          `https://us-central1-diamond-tofu-career.cloudfunctions.net/api/profile?uid=${uid}`
         );
         setUser({
           first_name: response.data.first_name || "",

@@ -18,7 +18,8 @@ export const ApplySuccess = ({ setDocument }) => {
     const data = {
       docID: setDocument,
     };
-    await axios.post(`http://localhost:3000/login/later?uid=${uid}`, data);
+    await axios.post(`
+    https://us-central1-diamond-tofu-career.cloudfunctions.net/api/login/later?uid=${uid}`, data);
     const role = localStorage.setItem("role", 2);
     navigate("/user");
 

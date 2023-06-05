@@ -103,8 +103,10 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       status: "Pending",
       apply_time: currentDateTime,
     };
+    // https://diamondtofucareerserver.web.app/
+
     try {
-      const response = await axios.post("http://localhost:3000/form", postData);
+      const response = await axios.post("https://us-central1-diamond-tofu-career.cloudfunctions.net/api/form", postData);
       setShowSuccessModal(true);
       navigate("/apply");
       setDocument(response.data);

@@ -45,7 +45,7 @@ export const signInWithGooglePopup = async (id, newStatus) => {
   localStorage.setItem("uid", uid);
   localStorage.setItem("isLoggedIn", true);
   
-  const response = await axios.post("http://localhost:3000/login", result);
+  const response = await axios.post("https://us-central1-diamond-tofu-career.cloudfunctions.net/api/login", result);
   console.log(response.data);
   return response.data;
 };
