@@ -125,6 +125,22 @@ All user form data.
   },
   ...
 }
+### GET /api/profile/status?uid={uid}
+Retrieve the status of a user's profile.
+
+Query Parameters
+uid (string): The unique ID of the user.
+Response
+Status Code: 200 (OK)
+
+Response Body:
+```
+{
+  "title": "Full Time SDE",
+  "status": "Pending",
+  "apply_time": "2023-06-12T12:00:00Z"
+}
+```
 
 ## DiamondTofu Client
 The DiamondTofu Client is the frontend project of the Diamond Tofu Career Site. It is developed using React, a popular JavaScript library for building user interfaces. The client project provides a user-friendly interface for job seekers to explore job listings, submit applications, and interact with the career site.
