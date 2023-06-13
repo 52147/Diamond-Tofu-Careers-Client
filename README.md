@@ -8,7 +8,7 @@
 ### POST /api/login
 Authenticate a user with Google Sign-In and retrieve user information.    
 Request Body
-```
+```json
 {
   "email": "xxx@.gmail.com"
   "uid": "google-authentication-token"
@@ -17,7 +17,7 @@ Request Body
 token (string): The Google authentication token obtained during the Google Sign-In process.   
 
 Response Body: role of this user.   
-```
+```sjon
 {
   "role": "1"
 }
@@ -26,7 +26,7 @@ Response Body: role of this user.
 Submit a job application form.
 
 Request Body
-```
+```json
 {
   "id": 1,
   "firstN": "John",
@@ -70,7 +70,7 @@ Response
 Status Code: 200 (OK)
 Response Body:
 All user form data.
-```
+```json
 { 
   {
     "id": 1,
@@ -135,7 +135,7 @@ Response
 Status Code: 200 (OK)
 
 Response Body:
-```
+```json
 {
   {
     "title": "Full Time Software Engineer",
@@ -163,7 +163,7 @@ uid (string): The unique ID of the user.
 Response
 Status Code: 200 (OK)
 Response Body:
-```
+```json
 {
   "first_name": "John",
   "last_name": "Doe",
