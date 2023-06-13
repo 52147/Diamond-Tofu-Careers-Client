@@ -232,7 +232,7 @@ npm install
 ```
 npm install firebase-admin --save
 ```
-This command will download and install the Firebase Admin SDK package, enabling you to interact with Firebase services from the server-side code.
+This command will download and install the Firebase Admin SDK package, enabling you to interact with Firebase services from the server-side code.   
 4. Run the client and server projects concurrently:
 ```
 npm start
