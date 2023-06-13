@@ -143,14 +143,14 @@ Response Body:
     "apply_time": "2023-06-12T12:00:00Z"
   },
   {
-  "title": "Internship Software Engineer",
-  "status": "Pending",
-  "apply_time": "2023-06-12T12:00:00Z"
+    "title": "Internship Software Engineer",
+    "status": "Pending",
+    "apply_time": "2023-06-12T12:00:00Z"
   },
   {
-  "title": "Full Time Project Manager",
-  "status": "Pending",
-  "apply_time": "2023-06-12T12:00:00Z"
+    "title": "Full Time Project Manager",
+    "status": "Pending",
+    "apply_time": "2023-06-12T12:00:00Z"
   }
 }
 
@@ -175,6 +175,28 @@ Response Body:
 }
 
 ```
+
+### POST /api/profile/update?uid={uid}
+
+Update a user's profile information.
+
+Query Parameters
+uid (string): The unique ID of the user.
+Request Body
+```json
+{
+  "email": "john@example.com",
+  "phone": "1234567890",
+  "location": "Boston, MA",
+  "resume": "https://example.com/resume.pdf"
+}
+```
+- email (string): The updated email address of the user.
+- phone (string): The updated phone number of the user.
+- location (string): The updated location of the user.
+- resume (string): The updated resume URL of the user.
+Response
+Status Code: 200 (OK)
 ## DiamondTofu Client
 The DiamondTofu Client is the frontend project of the Diamond Tofu Career Site. It is developed using React, a popular JavaScript library for building user interfaces. The client project provides a user-friendly interface for job seekers to explore job listings, submit applications, and interact with the career site.
 
