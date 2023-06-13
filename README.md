@@ -125,7 +125,7 @@ All user form data.
   },
   ...
 }
-### GET /api/profile/status?uid={uid}
+### `GET /api/profile/status?uid={uid}`
 Retrieve application data including title, status, apply time of all this user applications.
 
 Query Parameters
