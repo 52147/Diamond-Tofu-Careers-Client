@@ -4,6 +4,25 @@
 
 - The client is hosted on Firebase Hosting, while the server is deployed using Firebase Cloud Functions. 
 - This web application consists of two parts: the frontend, hosted at https://diamondtofucareer.com/, and the backend, deployed at https://us-central1-diamond-tofu-career.cloudfunctions.net/api.
+## RESTful API
+POST /api/login
+Authenticate a user with Google Sign-In and retrieve user information.
+Request Body
+```
+{
+  "email": "xxx@.gmail.com"
+  "uid": "google-authentication-token"
+}
+```
+token (string): The Google authentication token obtained during the Google Sign-In process.
+
+Response Body: role of this user
+```
+{
+  "role": "1"
+}
+```
+
 ## DiamondTofu Client
 The DiamondTofu Client is the frontend project of the Diamond Tofu Career Site. It is developed using React, a popular JavaScript library for building user interfaces. The client project provides a user-friendly interface for job seekers to explore job listings, submit applications, and interact with the career site.
 
