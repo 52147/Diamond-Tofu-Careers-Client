@@ -64,6 +64,67 @@ Request Body
 
 Response.   
 Status Code: 200 (OK)
+### GET /api/resumes
+Retrieve form data.
+Response
+Status Code: 200 (OK)
+Response Body:
+All user form data.
+```
+{ 
+  {
+    "id": 1,
+    "firstN": "John",
+    "lastN": "Doe",
+    "title": "Position",
+    "email": "john@example.com",
+    "phone": "1234567890",
+    "address": "123 Main St",
+    "education": "Bachelor's Degree",
+    "accomplish": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "visa": "Yes",
+    "link": "https://example.com",
+    "resume": "base64-encoded-resume-data",
+    "uid": "user-uid",
+    "status": "Pending",
+    "apply_time": "2023-06-12T12:00:00Z"
+  },
+  {
+    "id": 2,
+    "firstN": "John",
+    "lastN": "Doe",
+    "title": "Position",
+    "email": "john@example.com",
+    "phone": "1234567890",
+    "address": "123 Main St",
+    "education": "Bachelor's Degree",
+    "accomplish": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "visa": "Yes",
+    "link": "https://example.com",
+    "resume": "base64-encoded-resume-data",
+    "uid": "user-uid",
+    "status": "Pending",
+    "apply_time": "2023-06-12T12:00:00Z"
+  },
+  {
+    "id": 3,
+    "firstN": "John",
+    "lastN": "Doe",
+    "title": "Position",
+    "email": "john@example.com",
+    "phone": "1234567890",
+    "address": "123 Main St",
+    "education": "Bachelor's Degree",
+    "accomplish": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "visa": "Yes",
+    "link": "https://example.com",
+    "resume": "base64-encoded-resume-data",
+    "uid": "user-uid",
+    "status": "Pending",
+    "apply_time": "2023-06-12T12:00:00Z"
+  },
+  ...
+}
 
 ## DiamondTofu Client
 The DiamondTofu Client is the frontend project of the Diamond Tofu Career Site. It is developed using React, a popular JavaScript library for building user interfaces. The client project provides a user-friendly interface for job seekers to explore job listings, submit applications, and interact with the career site.
