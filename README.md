@@ -46,7 +46,24 @@ Request Body
 }
 
 ```
+- id (number): The ID of the application.
+- firstN (string): The first name of the applicant.
+- lastN (string): The last name of the applicant.
+- title (string): The position/title the applicant is applying for.
+- email (string): The email address of the applicant.
+- phone (string): The phone number of the applicant.
+- address (string): The address of the applicant.
+- education (string): The educational background of the applicant.
+- accomplish (string): The accomplishments or qualifications of the applicant.
+- visa (string): The visa status of the applicant.
+- link (string): A link to the applicant's portfolio or relevant website.
+- resume (string): The base64-encoded data of the applicant's resume.
+- uid (string): The unique ID of the user.
+- status (string): The status of the application (e.g., "Pending").
+- apply_time (string): The timestamp when the application was submitted.
 
+Response.   
+Status Code: 200 (OK)
 
 ## DiamondTofu Client
 The DiamondTofu Client is the frontend project of the Diamond Tofu Career Site. It is developed using React, a popular JavaScript library for building user interfaces. The client project provides a user-friendly interface for job seekers to explore job listings, submit applications, and interact with the career site.
