@@ -126,7 +126,7 @@ All user form data.
   ...
 }
 ### GET /api/profile/status?uid={uid}
-Retrieve the status of a user's profile.
+Retrieve application data including title, status, apply time of all this user applications.
 
 Query Parameters
 uid (string): The unique ID of the user.
@@ -136,10 +136,23 @@ Status Code: 200 (OK)
 Response Body:
 ```
 {
-  "title": "Full Time SDE",
+  {
+    "title": "Full Time Software Engineer",
+    "status": "Pending",
+    "apply_time": "2023-06-12T12:00:00Z"
+  },
+  {
+  "title": "Internship Software Engineer",
   "status": "Pending",
   "apply_time": "2023-06-12T12:00:00Z"
+  },
+  {
+  "title": "Full Time Project Manager",
+  "status": "Pending",
+  "apply_time": "2023-06-12T12:00:00Z"
+  }
 }
+
 ```
 
 ## DiamondTofu Client
