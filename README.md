@@ -265,8 +265,7 @@ firebase deploy --only functions
 ## Conclusion
 The Diamond Tofu Career Site is a comprehensive web application that enhances the hiring process for Diamond Tofu. By combining the DiamondTofu Client and DiamondTofu Server projects, we have created an efficient and user-friendly platform for job seekers and administrators alike. The React-based frontend and Node.js-based backend, along with the integration of Firebase Admin SDK and RESTful API, contribute to a seamless experience and efficient data management.
 
-We are excited to have you experience the Diamond Tofu Career Site. Please visit https://diamondtofucareer.com/ to explore job opportunities and submit applications. The backend, deployed at https://us-central1-diamond-tofu-career.cloudfunctions.net/api, ensures a seamless and reliable experience. Should you have any questions or require assistance, please feel free to reach out to us.
+We are excited to have you experience the Diamond Tofu Career Site. Please visit https://diamondtofucareer.com/ to explore job opportunities and submit applications. The backend, deployed at https://us-central1-diamond-tofu-career.cloudfunctions.net/api, ensures a seamless and reliable experience. Should you have any questions or require assistance, please feel free to reach out to us through info@diamondtofu.com.
 
 Thank you for choosing the Diamond Tofu Career Site!
 
-For more information about the project or any inquiries, please feel free to contact me at debrah@bu.edu.
