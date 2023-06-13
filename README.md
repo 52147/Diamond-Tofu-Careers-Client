@@ -1,24 +1,79 @@
-# Diamond Tofu Career
+# Diamond Tofu Career Site
 
-## Introduction
+- The Diamond Tofu Career Site is a web application built with two projects: "DiamondTofu Client" for the frontend using React, and "DiamondTofu Server" for the backend using Node.js. The application utilizes Firebase Admin SDK to access data in Firestore, and both the frontend and backend communicate with each other through a RESTful API for efficient data transfer.
 
-Building a career site with a RESTful architecture involves breaking down the application into smaller, modular components that can communicate with each other through APIs. 
+- The client is hosted on Firebase Hosting, while the server is deployed using Firebase Cloud Functions. 
+- This web application consists of two parts: the frontend, hosted at https://diamondtofucareer.com/, and the backend, deployed at https://us-central1-diamond-tofu-career.cloudfunctions.net/api.
+## DiamondTofu Client
+The DiamondTofu Client is the frontend project of the Diamond Tofu Career Site. It is developed using React, a popular JavaScript library for building user interfaces. The client project provides a user-friendly interface for job seekers to explore job listings, submit applications, and interact with the career site.
 
-## Steps
-1. Define the requirements: Determine what features the site will need, such as the ability to search for jobs, apply for jobs, and manage job applications. Consider the needs of both job seekers and administrators.    
+## Key Features
+- Job Listings: The client project displays job listings fetched from the backend server. It presents job details such as title, description, and requirements in an organized and visually appealing manner.
 
-2. Implement UX/UI design: Once the technical requirements are satisfied, implement a user experience/user interface design that meets the business requirements. This involves considering how users interact with the site and making design choices that are both aesthetically pleasing and functional.    
+- Application Submission: Job seekers can fill out an application form provided by the client project and submit their applications. The client ensures a seamless experience for applicants by validating form inputs and handling submission requests.
 
-3. Develop the frontend: Use a frontend framework such as React to create the user interface for the career site. The frontend should consume the RESTful endpoints to display job listings, allow job seekers to submit applications, and allow administrators to manage job applications.    
+- User Interface: The client project emphasizes usability and responsiveness, allowing users to easily navigate the career site on various devices and screen sizes.
 
-4. Choose a backend framework: Select a backend framework that is well-suited for RESTful architecture. Create RESTful endpoints for accessing and manipulating data in the database.    
+## DiamondTofu Server
+The DiamondTofu Server is the backend project of the Diamond Tofu Career Site. It is built with Node.js, a JavaScript runtime for executing server-side applications. The server project handles data storage, retrieval, and management, leveraging the Firebase Admin SDK to interact with the Firestore database.
+## Key Features
+- RESTful API: The server project exposes a RESTful API that enables communication between the client and server. It follows REST principles, providing endpoints for job listings, application submission, and application management.
 
-5. Design the database schema: Decide on the data models you will need to store job listings, job applications, and user information. Plan how the different data models will be related to each other.    
+- Database Operations: The server project utilizes the Firebase Admin SDK to perform secure and scalable CRUD operations on the Firestore database. This includes creating job listings, storing submitted applications, and managing application data.
 
-6. Implement CRUD operations: Implement the CRUD operations (Create, Read, Update, Delete) on the real-time database. This will allow users to create and manage job listings, job applications, and user information.  
+- Application Management: The server project includes functionality for administrators to efficiently manage job applications. This includes reviewing applications, shortlisting candidates, and providing feedback.
 
-7. Test and debug: Test the application thoroughly to ensure that it works as expected. Debug any issues that arise during testing.    
+## Deploy Locally
+To deploy and use the Diamond Tofu Career Site locally, follow these steps:
 
-8. Deploy on Firebase: Deploy the application on Google Cloud Platform Firebase. Firebase provides a real-time database that can be used to store data and allows for easy scalability.    
+1. Clone the repository:
+```
+git clone https://github.com/52147/Diamond-Tofu-Careers-Client.git
+git clone https://github.com/52147/Diamond-Tofu-Careers-Server.git
+```
+2. Install dependencies for both the client and server projects:
+```
+npm install
+```
+3. Install the Firebase Admin SDK package:
+```
+npm install firebase-admin --save
+```
+This command will download and install the Firebase Admin SDK package, enabling you to interact with Firebase services from the server-side code.
+4. Run the client and server projects concurrently:
+```
+npm start
+```
+The Diamond Tofu Career Site should now be accessible at http://localhost:3000.
 
+## Hosting
+### DiamondTofu Client
+The DiamondTofu Client is hosted on Firebase Hosting, which provides a fast and reliable platform for deploying static web content. Hosting on Firebase allows for easy scalability, automatic SSL certificates, and global content delivery through the Firebase Content Delivery Network (CDN).
 
+To deploy the client project to Firebase Hosting, follow these steps:
+
+1. Build the Diamond Tofu Career client project:
+```
+npm run build
+```
+
+2. Deploy to Firebase Hosting:
+```
+firebase deploy --only hosting
+```
+After a successful deployment, the DiamondTofu Client will be accessible via the provided Firebase Hosting URL. https://diamondtofucareer.com/
+### DiamondTofu Server
+The DiamondTofu Server is hosted using Firebase Cloud Functions, which allows for deploying serverless functions that can be triggered by HTTP requests. Hosting the server as a function enables automatic scaling, simplified server management, and cost optimization based on usage.
+
+To deploy the server project using Firebase Cloud Functions, follow these steps:
+```
+firebase deploy --only functions
+```
+## Conclusion
+The Diamond Tofu Career Site is a comprehensive web application that enhances the hiring process for Diamond Tofu. By combining the DiamondTofu Client and DiamondTofu Server projects, we have created an efficient and user-friendly platform for job seekers and administrators alike. The React-based frontend and Node.js-based backend, along with the integration of Firebase Admin SDK and RESTful API, contribute to a seamless experience and efficient data management.
+
+We are excited to have you experience the Diamond Tofu Career Site. Please visit https://diamondtofucareer.com/ to explore job opportunities and submit applications. The backend, deployed at https://us-central1-diamond-tofu-career.cloudfunctions.net/api, ensures a seamless and reliable experience. Should you have any questions or require assistance, please feel free to reach out to us.
+
+Thank you for choosing the Diamond Tofu Career Site!
+
+For more information about the project or any inquiries, please feel free to contact me at debrah@bu.edu.
