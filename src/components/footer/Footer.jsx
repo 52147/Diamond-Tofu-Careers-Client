@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLocation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faLocation,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
 export const Footer = () => {
@@ -48,15 +52,26 @@ export const Footer = () => {
                       <FontAwesomeIcon icon={faLocation} />
                     </span>
                     <label htmlFor="" className="text-white">
-                      MA, Cambridge, US
+                      Boston, MA, US
                     </label>
                   </li>
                   <li className="flex items-center mb-2">
                     <span className="footer-list-icon mr-2">
                       <FontAwesomeIcon icon={faLinkedinIn} />
                     </span>
-                    <label htmlFor="" className="text-white">
+                    <a
+                      href="https://www.linkedin.com/company/diamond-tofu/"
+                      className="text-white"
+                    >
                       diamond-tofu
+                    </a>
+                  </li>
+                  <li className="flex items-center mb-2">
+                    <span className="footer-list-icon mr-2">
+                      <FontAwesomeIcon icon={faPhone} />
+                    </span>
+                    <label htmlFor="" className="text-white">
+                      585-203-2588
                     </label>
                   </li>
                   <li className="flex items-center mb-2">
@@ -64,7 +79,7 @@ export const Footer = () => {
                       <FontAwesomeIcon icon={faEnvelope} />
                     </span>
                     <label htmlFor="" className="text-white">
-                      support@gmail.com
+                      info@diamondtofu.com
                     </label>
                   </li>
                 </ul>

@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { TableRow } from "./TableRow";
 import { Table, Pagination } from "react-bootstrap";
+import axios from 'axios';
 
 export const TableComponent = () => {
   const [data, setData] = useState([]);
   const [posts, setPosts] = useState([]);
   const [active, setActivePage] = useState(1);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://us-central1-diamond-tofu-career.cloudfunctions.net/api/resumes");
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("https://us-central1-diamond-tofu-career.cloudfunctions.net/api/resumes");
+  //       const jsonData = await response.json();
+  //       setData(jsonData);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
-    fetchData();
-  }, []);
+
+  useEffect(()=>{
+    axios.get("https://us-central1-diamond-tofu-career.cloudfunctions.net/api/resumes")
+    .then((response)=>{
+      console.log(response.data)
+      setData(response.data)
+    })
+    .catch((error)=>{
+      console.error("Error Type: ", error);
+    })
+  },[])
 
   useEffect(() => {
     if (data.length > 0) {

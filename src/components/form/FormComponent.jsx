@@ -125,10 +125,10 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
 
     emailjs
       .send(
-        "service_m6td8xi",
-        "template_q7m09ga",
+        "service_6qxmgks",
+        "template_pary4m3",
         templateParams,
-        "34k_iE5a6LQj_hmU8"
+        "t_v6Rohy7vK9xSdF5"
       )
       .then(
         (result) => {

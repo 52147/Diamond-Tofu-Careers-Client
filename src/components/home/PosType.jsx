@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import axios from "axios"
 export const PosType = ({ setTitle }) => {
   const data = [
     {

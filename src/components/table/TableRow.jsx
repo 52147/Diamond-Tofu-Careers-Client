@@ -10,9 +10,12 @@ export const TableRow = ({ items }) => {
   const [type, setType] = useState("Dictamen");
   const sendEmail = (item) => {
     // Replace with your own service ID and template ID
-    const serviceId = "service_m6td8xi";
-    const templateId = "template_q7m09ga";
+    const serviceId = "service_6qxmgks";
+    // 
+    // debra: service_m6td8xi
+    const templateId = "template_9xynu6x";
 
+    // debra: template_q7m09ga
     // Replace with your own template parameter values
     const templateParams = {
       from_name: "Diamond Tofu",
@@ -23,7 +26,7 @@ export const TableRow = ({ items }) => {
     };
 
     emailjs
-      .send(serviceId, templateId, templateParams, "34k_iE5a6LQj_hmU8")
+      .send(serviceId, templateId, templateParams, "t_v6Rohy7vK9xSdF5")
       .then((result) => {
         console.log(result.text);
         alert("Application reviewed email sent successfully!");
