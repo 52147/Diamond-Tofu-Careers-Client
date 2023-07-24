@@ -45,7 +45,7 @@ export const UserProfile = ({ setUid }) => {
     <div className="container mt-4 mb-4">
       <div className="card mt-4 ">
         <div className="card-body">
-          <h3 className="card-title">Personal Information</h3>
+          <h3 className="card-title text-violet-700">Personal Information</h3>
           <ul className="list-unstyled">
             <li>
               <strong>First Name: </strong>
@@ -76,13 +76,13 @@ export const UserProfile = ({ setUid }) => {
       </div>
       <div className="card mt-4">
         <div className="card-body">
-          <h3 className="card-title">Job Application Statuses</h3>
+          <h3 className="card-title text-violet-700">Job Application Statuses</h3>
           <JobApplicationStatus />
         </div>
       </div>
       <div className="card mt-4">
         <div className="card-body">
-          <h3 className="card-title">Settings</h3>
+          <h3 className="card-title text-violet-700">Settings</h3>
           <UserProfileForm user={user} />
         </div>
       </div>

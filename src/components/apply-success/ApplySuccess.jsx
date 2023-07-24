@@ -22,10 +22,7 @@ export const ApplySuccess = ({ setDocument }) => {
     https://us-central1-diamond-tofu-career.cloudfunctions.net/api/login/later?uid=${uid}`, data);
     const role = localStorage.setItem("role", 2);
     navigate("/user");
-
   };
-  
-
 
   return (
     <>
